@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$iva = 21;
+$iva = 19;
 $precioSinIva = 0;
 $precioConIva = 0;
 $ivaCantidad = 0;
@@ -60,8 +60,8 @@ if ($_POST) {
                     <div class="pb-3">
                         <label for="">IVA</label>
                         <select name="lstIva" id="lstIva" class="form-control">
-                            <option value="19">19</option>
-                            <option value="21" selected>21</option>
+                            <option value="19" elected>19</option>
+                            <option value="21">21</option>
                         </select>
                     </div>
                     <div class="pb-3">
