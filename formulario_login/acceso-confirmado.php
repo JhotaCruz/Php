@@ -11,13 +11,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12 my-3">
-                <h1>Bienvenid@ al sistema</h1>
+                <h1>Bienvenida Amor</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="alert alert-primary" role="alert">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia nobis est quod necessitatibus excepturi deserunt tempora odit beatae, possimus error in quidem dolore provident impedit praesentium perspiciatis corrupti sequi architecto!
+                "Eres mi inspiración diaria, mi fuerza en los momentos difíciles y el amor de mi vida. Te amo más de lo que las palabras pueden expresar."
                 </div>
             </div>
         </div>
