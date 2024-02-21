@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 session_start();
 
-if(isset($_SESSION["listadoClientes"])){
+if (isset($_SESSION["listadoClientes"])) {
     //Si existe la variable de session listadoClientes asigno su contenido a aClientes
     $aClientes = $_SESSION["listadoClientes"];
 } else {
@@ -14,9 +14,9 @@ if(isset($_SESSION["listadoClientes"])){
 }
 
 //Pregunta si es postback sea para enviar o eliminar todos
-if($_POST){
+if ($_POST) {
     //Si hace click en Enviar entonces:
-    if(isset($_POST["btnEnviar"])){
+    if (isset($_POST["btnEnviar"])) {
         //Asignamos en variables los datos que vienen del formulario
         $nombre = $_POST["txtNombre"];
         $dni = $_POST["txtDni"];
@@ -24,22 +24,23 @@ if($_POST){
         $edad = $_POST["txtEdad"];
 
         //Creamos un array que contendrá el listado de clientes
-        $aClientes[] = array("nombre" => $nombre, 
-                            "dni" => $dni,
-                            "telefono" => $telefono,
-                            "edad" => $edad
+        $aClientes[] = array(
+            "nombre" => $nombre,
+            "dni" => $dni,
+            "telefono" => $telefono,
+            "edad" => $edad
         );
         //Actualiza el contenido de variable de session
         $_SESSION["listadoClientes"] = $aClientes;
     }
     //Si hace click en Eliminar
-    if(isset($_POST["btnEliminar"])){
+    if (isset($_POST["btnEliminar"])) {
         session_destroy();
         $aClientes = array();
     }
 }
 //Pregunta si viene pos en la query string
-if(isset($_GET["pos"])){
+if (isset($_GET["pos"])) {
     //Recupero el dato que viene desde la query string vía get
     $pos = $_GET["pos"];
     //Elimina la posición del array indicada
@@ -80,10 +81,10 @@ if(isset($_GET["pos"])){
                     <input type="text" name="txtDni" class="form-control my-2">
 
                     <label for="txtTelefono">Telefono:</label>
-                    <input type="tel" name="txtTelefono" class="form-control my-2" >
+                    <input type="tel" name="txtTelefono" class="form-control my-2">
 
                     <label for="txtEdad">Edad:</label>
-                    <input type="text" name="txtEdad" class="form-control my-2" >
+                    <input type="text" name="txtEdad" class="form-control my-2">
 
                     <button type="submit" name="btnEnviar" class="btn bg-primary text-white">Enviar</button>
                     <button type="submit" name="btnEliminar" class="btn bg-danger text-white">Eliminar</button>
@@ -99,7 +100,7 @@ if(isset($_GET["pos"])){
                         <th>Acciones</th>
                     </thead>
                     <tbody>
-                        <?php foreach ($aClientes as $pos => $cliente): ?>
+                        <?php foreach ($aClientes as $pos => $cliente) : ?>
                             <tr>
                                 <td><?php echo $cliente["nombre"]; ?></td>
                                 <td><?php echo $cliente["dni"]; ?></td>
