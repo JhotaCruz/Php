@@ -17,7 +17,7 @@ if (file_exists("archivo.txt")) {
 }
 
 if ($_POST) {
-    $Documento = $_POST["txtDocumento"];
+    $dni = $_POST["txtDni"];
     $nombre = $_POST["txtNombre"];
     $telefono = $_POST["txtTelefono"];
     $correo = $_POST["txtCorreo"];
@@ -46,8 +46,7 @@ if ($_POST) {
         }
 
         //Edito uno existente
-        $aClientes[$pos] = array(
-            "Documento" => $Documento,
+        $aClientes[$pos] = array("dni" => $dni,
             "nombre" => $nombre,
             "telefono" => $telefono,
             "correo" => $correo,
@@ -66,8 +65,7 @@ if ($_POST) {
         }
 
         //Inserto uno nuevo
-        $aClientes[] = array(
-            "Documento" => $Documento,
+        $aClientes[] = array("dni" => $dni,
             "nombre" => $nombre,
             "telefono" => $telefono,
             "correo" => $correo,
@@ -122,8 +120,8 @@ if (isset($_GET["eliminar"]) && $_GET["eliminar"] >= 0) {
             <div class="col-6">
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div>
-                        <label for="">Documento: *</label>
-                        <input type="text" name="txtDocumento" id="txtDocumento" class="form-control" required value="<?php echo isset($_GET["editar"]) && $_GET["editar"] >= 0 ? $aClientes[$_GET["editar"]]["dni"] : ""; ?>">
+                        <label for="">DNI: *</label>
+                        <input type="text" name="txtDni" id="txtDni" class="form-control" required value="<?php echo isset($_GET["editar"]) && $_GET["editar"] >= 0 ? $aClientes[$_GET["editar"]]["dni"] : ""; ?>">
                     </div>
                     <div>
                         <label for="">Nombre: *</label>
@@ -153,7 +151,7 @@ if (isset($_GET["eliminar"]) && $_GET["eliminar"] >= 0) {
                     <thead>
                     <tr>
                         <th>Imagen</th>
-                        <th>Documento</th>
+                        <th>DNI</th>
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Acciones</th>
@@ -167,9 +165,8 @@ if (isset($_GET["eliminar"]) && $_GET["eliminar"] >= 0) {
                                 <td><?php echo $cliente["nombre"]; ?></td>
                                 <td><?php echo $cliente["correo"]; ?></td>
                                 <td>
-                                    <a href="?editar=<?php echo $pos; ?>" class="btn btn-secnodary"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="?eliminar=<?php echo $pos; ?>" class="btn btn-secnodary"><i class="bi bi-trash"></i></a>
-                                </td>
+                                <a href="?editar=<?php echo $pos; ?>" class="btn btn-secnodary"><i class="bi bi-pencil-square"></i></a>
+                                <a href="?eliminar=<?php echo $pos; ?>" class="btn btn-secnodary"><i class="bi bi-trash"></i></a>       </td>
                             </tr>
                         <?php endforeach;?>
                     </tbody>
