@@ -17,7 +17,7 @@ if (file_exists("archivo.txt")) {
 }
 
 if ($_POST) {
-    $dni = $_POST["txtDni"];
+    $Documento = $_POST["txtDocumento"];
     $nombre = $_POST["txtNombre"];
     $telefono = $_POST["txtTelefono"];
     $correo = $_POST["txtCorreo"];
@@ -46,7 +46,8 @@ if ($_POST) {
         }
 
         //Edito uno existente
-        $aClientes[$pos] = array("dni" => $dni,
+        $aClientes[$pos] = array(
+            "Documento" => $Documento,
             "nombre" => $nombre,
             "telefono" => $telefono,
             "correo" => $correo,
@@ -65,7 +66,8 @@ if ($_POST) {
         }
 
         //Inserto uno nuevo
-        $aClientes[] = array("dni" => $dni,
+        $aClientes[] = array(
+            "Documento" => $Documento,
             "nombre" => $nombre,
             "telefono" => $telefono,
             "correo" => $correo,
