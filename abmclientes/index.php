@@ -165,8 +165,8 @@ if (isset($_GET["eliminar"]) && $_GET["eliminar"] >= 0) {
                                 <td><?php echo $cliente["nombre"]; ?></td>
                                 <td><?php echo $cliente["correo"]; ?></td>
                                 <td>
-                                    <a href="?editar=<?php echo $pos; ?>" class="btn btn-secnodary">Editar</a>
-                                    <a href="?eliminar=<?php echo $pos; ?>" class="btn btn-secnodary">Eliminar</a>
+                                    <a href="?editar=<?php echo $pos; ?>" class="btn btn-secnodary"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="?eliminar=<?php echo $pos; ?>" class="btn btn-secnodary"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach;?>

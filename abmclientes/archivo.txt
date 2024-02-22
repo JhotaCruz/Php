@@ -1,1 +1,1 @@
-[{"dni":"12345","nombre":"jhon","telefono":"3015555","correo":"jhota@jhota.com","imagen":""},{"dni":"12345","nombre":"jhon","telefono":"3015555","correo":"jhota@jhota.com","imagen":""}]
+[{"dni":"12345","nombre":"jhon","telefono":"3015555","correo":"jhota@jhota.com","imagen":""}]
