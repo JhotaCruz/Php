@@ -1,6 +1,14 @@
 <?php
+if(!isset($_SESSION["nombre"])){
+    header("location:login.php");
+}
 
-
+if($_POST){
+    if(isset($_POST["btnCerrar"])){ 
+        session_destroy();
+        header("location:login.php");
+    }
+}
 ?>
 
 <!DOCTYPE html>
