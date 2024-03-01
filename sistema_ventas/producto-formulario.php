@@ -6,35 +6,58 @@ include_once "entidades/tipoproducto.php";
 
 $pg = "Edición de producto";
 
-$tipoProducto = new Tipoproducto();
-$aTipoProductos = $tipoProducto->obtenerTodos();
-
 $producto = new Producto();
 $producto->cargarFormulario($_REQUEST);
 
-if($_POST){
-    if(isset($_POST["btnGuardar"])){
-        if(isset($_GET["id"]) && $_GET["id"] > 0){
-              //Actualizo un  registro existente
-              $producto->actualizar();
-        } else {
-
-
-
-
-
-            //Es nuevo
-            $producto->insertar();
-            header("Location: producto-listado.php?msg=ok");
+if ($_POST) {
+    if (isset($_POST["btnGuardar"])) {
+        $nombreImagen = "";
+        //Almacenamos la imagen en el servidor
+        if ($_FILES["imagen"]["error"] === UPLOAD_ERR_OK) {
+            $nombreRandom = date("Ymdhmsi");
+            $archivoTmp = $_FILES["imagen"]["tmp_name"];
+            $nombreArchivo = $_FILES["imagen"]["name"];
+            $extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
+            $nombreImagen = "$nombreRandom.$extension";
+            move_uploaded_file($archivoTmp, "files/$nombreImagen");
         }
-    } else if(isset($_POST["btnBorrar"])){
+
+        if (isset($_GET["id"]) && $_GET["id"] > 0) {
+            $productoAnt = new Producto();
+            $productoAnt->idproducto = $_GET["id"];
+            $productoAnt->obtenerPorId();
+            $imagenAnterior = $productoAnt->imagen;
+
+            //Si es una actualizacion y se sube una imagen, elimina la anterior
+            if ($_FILES["imagen"]["error"] === UPLOAD_ERR_OK) {
+                if (!$imagenAnterior != "") {
+                    if(file_exists("files/$imagenAnterior"))
+                        unlink("files/$imagenAnterior");
+                }
+            } else {
+                //Si no viene ninguna imagen, setea como imagen la que habia previamente
+                $nombreImagen = $imagenAnterior;
+            }
+
+            $producto->imagen = $nombreImagen;
+            //Actualizo un cliente existente
+            $producto->actualizar();
+        } else {
+            //Es nuevo
+            $producto->imagen = $nombreImagen;
+            $producto->insertar();
+        }
+    } else if (isset($_POST["btnBorrar"])) {
         $producto->eliminar();
         header("Location: producto-listado.php");
     }
-} else if(isset($_REQUEST["id"])){
-    $producto->obtenerPorId();
-
 }
+if (isset($_GET["id"]) && $_GET["id"] > 0) {
+    $producto->obtenerPorId();
+}
+
+$tipoProducto = new Tipoproducto();
+$aTipoProductos = $tipoProducto->obtenerTodos();
 
 include_once "header.php";
 ?>
@@ -46,7 +69,7 @@ include_once "header.php";
           <h1 class="h3 mb-4 text-gray-800">Productos</h1>
            <div class="row">
                 <div class="col-12 mb-3">
-                    <a href="producto-listado.php" class="btn btn-primary mr-2">Listado</a>
+                    <a href="productos.php" class="btn btn-primary mr-2">Listado</a>
                     <a href="producto-formulario.php" class="btn btn-primary mr-2">Nuevo</a>
                     <button type="submit" class="btn btn-success mr-2" id="btnGuardar" name="btnGuardar">Guardar</button>
                     <button type="submit" class="btn btn-danger" id="btnBorrar" name="btnBorrar">Borrar</button>
@@ -61,13 +84,13 @@ include_once "header.php";
                     <label for="txtNombre">Tipo de producto:</label>
                     <select name="lstTipoProducto" id="lstTipoProducto" class="form-control selectpicker" data-live-search="true" required>
                         <option value="" disabled selected>Seleccionar</option>
-                        <?php foreach($aTipoProductos as $tipo): ?>
-                            <?php if($producto->fk_idtipoproducto ==  $tipo->idtipoproducto): ?>
-                                <option value="<?php echo $tipo->idtipoproducto ?>" selected><?php echo $tipo->nombre?></option>
-                                <?php else: ?>
-                                    <option value="<?php echo $tipo->idtipoproducto ?>"><?php echo $tipo->nombre?></option>
-                                <?php endif; ?>
-                        <?php endforeach; ?>
+                        <?php foreach ($aTipoProductos as $tipo): ?>
+                            <?php if ($tipo->idtipoproducto == $producto->fk_idtipoproducto): ?>
+                                <option selected value="<?php echo $tipo->idtipoproducto; ?>"><?php echo $tipo->nombre; ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo $tipo->idtipoproducto; ?>"><?php echo $tipo->nombre; ?></option>
+                            <?php endif;?>
+                        <?php endforeach;?>
                     </select>
                 </div>
 
