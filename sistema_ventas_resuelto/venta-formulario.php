@@ -117,6 +117,7 @@ include_once("header.php");
                     <?php else: ?>
                     <input type="time" required="" class="form-control d-inline" style="width: 120px" name="txtHora" id="txtHora" value="<?php echo date_format(date_create($venta->fecha), "H:i"); ?>">
                     <?php endif; ?>
+                    
                 </div>
                 <div class="col-6 form-group">
                     <label for="lstCliente">Cliente:</label>

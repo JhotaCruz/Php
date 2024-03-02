@@ -94,6 +94,7 @@ include_once("header.php");
                         <?php endfor; ?>
                     </select>
                     <select class="form-control d-inline" name="txtMes" id="txtMes" style="width: 80px">
+                    <option selected="" disabled="">MM</option>
                         <?php for($i=1; $i <= 12; $i++): ?>
                             <?php if($venta->fecha != "" && $i == date_format(date_create($venta->fecha), "m")): ?>
                             <option selected><?php echo $i; ?></option>
