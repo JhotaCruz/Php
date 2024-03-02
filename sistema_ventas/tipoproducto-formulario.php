@@ -18,7 +18,7 @@ if($_POST){
             $tipoProducto->insertar();
             header("Location: tipoproducto-listado.php?msg=ok");
             $msg["texo"] = "INSERTADO CORRECTAMENTE";
-            $msg["codigo"] = "alert-success";
+            $msg["codigo"] = "alert-danger";
         }
     } else if(isset($_POST["btnBorrar"])){
         $tipoProducto->eliminar();
