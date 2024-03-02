@@ -14,14 +14,16 @@ if ($_POST) {
         $nombreImagen = "";
         //Almacenamos la imagen en el servidor
         if ($_FILES["imagen"]["error"] === UPLOAD_ERR_OK) {
-            $nombreRandom = date("Ymdhmsi");
-            $archivoTmp = $_FILES["imagen"]["tmp_name"];
+            $nombreAleatorio = date("Ymdhmsi");
+            $archivo_Tmp = $_FILES["imagen"]["tmp_name"];
             $nombreArchivo = $_FILES["imagen"]["name"];
             $extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
-            $nombreImagen = "$nombreRandom.$extension";
-            move_uploaded_file($archivoTmp, "files/$nombreImagen");
-        }
+            $nombreImagen = "$nombreAleatorio.$extension";
 
+            if($extension == "png" || $extension == "jpg" || $extension == "jpeg") {
+            move_uploaded_file($archivo_Tmp, "files/$nombreImagen");
+        }
+    }
         if (isset($_GET["id"]) && $_GET["id"] > 0) {
             $productoAnt = new Producto();
             $productoAnt->idproducto = $_GET["id"];
