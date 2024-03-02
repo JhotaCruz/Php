@@ -4,7 +4,7 @@ include_once "config.php";
 include_once "entidades/tipoproducto.php";
 $pg = "Listado de tipo de productos";
 
-$tipoproducto = new TipoProducto();
+$tipoproducto = new Tipoproducto();
 $aTipoProductos = $tipoproducto->obtenerTodos();
 
 include_once("header.php"); 
@@ -19,13 +19,6 @@ include_once("header.php");
                 <div class="col-12 mb-3">
                     <a href="tipoproducto-formulario.php" class="btn btn-primary mr-2">Nuevo</a>
                 </div>
-                <?php if(isset($_GET["msg"]) && $_GET["msg"] == "ok"): ?>
-                  <div class="col-12">
-                    <div class="alert alert-success" role="alert">
-                    Insertado correctamente.
-                    </div>
-                  </div>
-                <?php endif; ?>
             </div>
           <table class="table table-hover border">
             <tr>

@@ -53,5 +53,3 @@ include_once("header.php");
 
       </div>
       <!-- End of Main Content -->
-
-<?php include_once("footer.php"); ?>
