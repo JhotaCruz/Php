@@ -10,16 +10,20 @@ $tipoProducto->cargarFormulario($_REQUEST);
 if($_POST){
     if(isset($_POST["btnGuardar"])){
         if(isset($_GET["id"]) && $_GET["id"] > 0){
-              //Actualizo un  registro existente
               $tipoProducto->actualizar();
+              $msg["texo"] = "ACTUALIZADO CORRECTAMENTE";
+              $msg["codigo"] = "alert-success";
+
         } else {
-            //Es nuevo
             $tipoProducto->insertar();
             header("Location: tipoproducto-listado.php?msg=ok");
+            $msg["texo"] = "INSERTADO CORRECTAMENTE";
+            $msg["codigo"] = "alert-success";
         }
     } else if(isset($_POST["btnBorrar"])){
         $tipoProducto->eliminar();
         header("Location: tipoProducto-listado.php");
+       
     }
 } else if(isset($_GET["id"]) && $_GET["id"] >= 0){
     $tipoProducto->obtenerPorId();
