@@ -202,7 +202,7 @@ function fCalcularTotal(){
             } else {
                 $("#msgStock").show();
             }
-            strResultado = Intl.NumberFormat("es-AR", {style: 'currency', currency: 'ARS'}).format(resultado);
+            strResultado = Intl.NumberFormat("es-CO", {style: 'currency', currency: 'COP'}).format(resultado);
             $("#txtTotal").val(strResultado);
         }
     });   
