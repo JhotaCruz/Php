@@ -6,8 +6,8 @@ error_reporting(E_ALL);
 //Iniciamos la session
 session_start();
 
-date_default_timezone_set('America/Argentina/Buenos_Aires');
-//date_default_timezone_set("America/Bogota");
+//date_default_timezone_set('America/Argentina/Buenos_Aires');
+date_default_timezone_set("America/Bogota");
 
 
 class Config {
