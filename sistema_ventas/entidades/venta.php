@@ -33,7 +33,7 @@ class Venta {
         $this->fk_idcliente = isset($request["lstCliente"])? $request["lstCliente"] : "";
         $this->fk_idproducto = isset($request["lstProducto"])? $request["lstProducto"]: "";
         if(isset($request["txtAnio"]) && isset($request["txtMes"]) && isset($request["txtDia"])){
-            $this->fecha = $request["txtAnio"] . "-" .  $request["txtMes"] . "-" .  $request["txtDia"] . " " . $request["txtHora"];
+            $this->fecha = $request["txtAnio"] . "-" .  $request["txtMes"] . "-" .  $request["txtDia"] . " ";
         }//2023-06-27 18:50
         $this->cantidad = isset($request["txtCantidad"])? $request["txtCantidad"] : 0;
         $this->preciounitario = isset($request["txtPrecioUni"])? $request["txtPrecioUni"] : 0.0;
